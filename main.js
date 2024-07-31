@@ -21,14 +21,16 @@ async function randomScroll(page) {
 
 async function searchInGoogle(page, query) {
   await page.goto('https://www.google.com');
-  await page.type('input[name=q]', query, { delay: 100 });
+  await page.waitForSelector('textarea[name=q]', { timeout: 10000 }); // Wait for the search input
+  await page.type('textarea[name=q]', query, { delay: 100 });
   await page.keyboard.press('Enter');
   await page.waitForNavigation();
 }
 
 async function searchInBing(page, query) {
   await page.goto('https://www.bing.com');
-  await page.type('input[name=q]', query, { delay: 100 });
+  await page.waitForSelector('textarea[name=q]', { timeout: 10000 }); // Wait for the search input
+  await page.type('textarea[name=q]', query, { delay: 100 });
   await page.keyboard.press('Enter');
   await page.waitForNavigation();
 }
